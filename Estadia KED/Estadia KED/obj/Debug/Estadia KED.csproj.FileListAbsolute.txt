@@ -6,3 +6,4 @@ E:\AntonioAlonso\KeD\KeD\Estadia\PagoPaylaKeD\Estadia KED\Estadia KED\bin\Estadi
 E:\AntonioAlonso\KeD\KeD\Estadia\PagoPaylaKeD\Estadia KED\Estadia KED\bin\Estadia KED.pdb
 E:\AntonioAlonso\KeD\KeD\Estadia\PagoPaylaKeD\Estadia KED\Estadia KED\obj\Debug\Estadia KED.dll
 E:\AntonioAlonso\KeD\KeD\Estadia\PagoPaylaKeD\Estadia KED\Estadia KED\obj\Debug\Estadia KED.pdb
+E:\AntonioAlonso\KeD\KeD\Estadia\PagoPaylaKeD\Estadia KED\Estadia KED\obj\Debug\Estadia KED.csprojResolveAssemblyReference.cache
