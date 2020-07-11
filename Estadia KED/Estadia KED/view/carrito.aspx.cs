@@ -35,5 +35,12 @@ namespace Estadia_KED.view{
             GridCarrito.DataBind();
             
         }
+
+        protected void pagar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("pago.aspx");
+
+        }
+
     }
 }

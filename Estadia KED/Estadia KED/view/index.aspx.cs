@@ -26,5 +26,14 @@ namespace Estadia_KED.view
             Session.Remove("correo");
             Response.Redirect("login.aspx");
         }
+
+
+        protected void carrito_Click(object sender, EventArgs e)
+        {
+            Session.Remove("correo");
+            Response.Redirect("carrito.aspx");
+        }
+
+
     }
 }

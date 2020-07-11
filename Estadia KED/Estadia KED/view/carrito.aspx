@@ -14,7 +14,7 @@
 <body>
     <br>
 <center><h1 class="mainCarrito">Carrito de productos</h1></center>
-    <form id="form1" runat="server">
+    <form id="carrito" runat="server">
     <div class="mainCarrito">
     <img src="../img/ked.png" height="10%" width="30%" /><br /><br />
     
@@ -51,7 +51,7 @@
     </Columns>
 </asp:gridview>
      
-     <asp:Button ID="btnPagar" runat="server" Text="Pagar"/><br /><br />
+     <asp:Button ID="btnPagar" runat="server" Text="Pagar" onclick="pagar_Click"/><br /><br />
     </div>
     </form>
 </body>

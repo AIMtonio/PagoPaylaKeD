@@ -64,6 +64,7 @@
     <Content Include="img\MasterCard_48px.png" />
     <Content Include="img\paypal.png" />
     <Content Include="img\PayPal_48px.png" />
+    <Content Include="img\Shopping Cart_48px.png" />
     <Content Include="img\Visa_48px.png" />
     <Content Include="img\windows server.png" />
     <Content Include="js\bootstrap.js" />
@@ -84,6 +85,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="control\Carrito.cs" />
     <Compile Include="control\ConCliente.cs" />
     <Compile Include="model\Cliente.cs" />
     <Compile Include="control\Conexion.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="view\carrito.aspx.cs">
       <DependentUpon>carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="view\carrito.aspx.designer.cs">
       <DependentUpon>carrito.aspx</DependentUpon>
@@ -111,6 +114,7 @@
     </Compile>
     <Compile Include="view\pago.aspx.cs">
       <DependentUpon>pago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="view\pago.aspx.designer.cs">
       <DependentUpon>pago.aspx</DependentUpon>
