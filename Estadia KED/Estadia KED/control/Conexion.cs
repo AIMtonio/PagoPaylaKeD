@@ -11,7 +11,7 @@ namespace Estadia_KED.control
         public SqlConnection conectar()
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Data Source=DESKTOP-051A3DU\\SQLEXPRESS; Initial Catalog=BasePayPal; Integrated Security=true;";
+            con.ConnectionString = "Data Source=DESKTOP-U87UEML\\SQLEXPRESS; Initial Catalog=BasePayPal; Integrated Security=true;";
             
             return con;
         }
