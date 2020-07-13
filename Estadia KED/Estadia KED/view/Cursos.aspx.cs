@@ -4,23 +4,25 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Estadia_KED.control;
 using System.Data.SqlClient;
 using System.Data;
 
+
 namespace Estadia_KED.view
 {
-    public partial class index : System.Web.UI.Page
+    public partial class Cursos : System.Web.UI.Page
     {
         string cadenaconexion = @"Data Source=DESKTOP-U87UEML\SQLEXPRESS; Initial Catalog=BasePayPal; Integrated Security=true;";
         protected void Page_Load(object sender, EventArgs e)
         {
+
             Cliente obj = (Cliente)Session["correo"];
             if (obj != null)
             {
                 usuario.Text = obj.correo;
             }
-            else {
+            else
+            {
                 Response.Redirect("login.aspx");
             }
 
@@ -37,7 +39,7 @@ namespace Estadia_KED.view
         {
             SqlConnection conexion = new SqlConnection(cadenaconexion);
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT TOP 3 id_curso,nombre,costo,descripcion,imagen FROM curso";
+            cmd.CommandText = "SELECT id_curso,nombre,costo,descripcion,imagen FROM curso";
             DataTable imagen = new DataTable();
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexion;

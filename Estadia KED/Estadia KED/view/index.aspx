@@ -8,167 +8,94 @@
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
     <script src="../js/jquery.js" type="text/javascript"></script>
     <script src="../js/bootstrap.js" type="text/javascript"></script>
+    <link href="../css/slide.css" rel="stylesheet" type="text/css" />
+    <link href="../css/carrusel.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function () {
+            $(' .slide img:gt(0)').hide();
+            setInterval(function () {
+                $(' .slide :first-child').fadeOut(2500).next('img').fadeIn(2500).end().appendTo(' .slide');
+            }, 2500);
+        });
+    </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand text-primary text-capitalize" href="#">KEDX</a>
+    <a href="login.aspx">
+    <img src="../img/kedX.png" height="30%" width="30%"/>
+    </a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="MisCursos.aspx">Mis cursos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="Cursos.aspx">Cursos</a>
       </li>
       <li class="nav-item">
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" runat="server">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="search" placeholder="Busqueda" aria-label="Busqueda">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Busqueda</button>
             <asp:LinkButton ID="lblEx" class="nav-link" runat="server" onclick="lblEx_Click">Cerrar sesi&oacute;n</asp:LinkButton>
             <asp:Label ID="usuario" runat="server" Text="" ForeColor="Azure"></asp:Label>
-            <asp:LinkButton ID="carrito" class="nav-link" runat="server" onclick="carrito_Click">
-            <img src="../img/Shopping Cart_48px.png" />
-            </asp:LinkButton>
     </form>
   </div>
 </nav>
+<div><br /><p class="h1  text-center"/><font color="#21B6BF">Cursos y Certificaciones Microsoft</font></p><hr class="hr-light bg-primary"></div>
+<div class="row">
+<div class="col-md-3"></div>
+<div class="slide" >
+    <img src="../img/azure.jpg" alt=""/>
+    <img src="../img/excel.jpg" alt=""/>
+    <img src="../img/log.png" alt=""/>
+</div>
+</div>
+<br />
+
+<div><p class="h1 text-center"><font color="#21B6BF">Cursos Principales</font> </p><hr class="hr-light bg-primary"></div>
 
 
-<div><p class="h1 text-uppercase py-4 text-center">Cursos</p><hr class="hr-light bg-primary"></div>
 
-
-
-<div class="row row-cols-1 row-cols-md-3">
-  <div class="col mb-4">
+ 
+<div class=" row">
+ <asp:Repeater ID="Repeater1" runat="server">
+<ItemTemplate>
+  <div class="col-md-4">
     <!-- Card -->
     <div class="card">
-
       <!--Card image-->
       <div class="view overlay">
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-          alt="Card image cap">
+        <img  src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"imagen")) %>" width="260" height="150"
+          alt="Curso">
         <a href="#!">
           <div class="mask rgba-white-slight"></div>
         </a>
       </div>
-
       <!--Card content-->
       <div class="card-body bg-dark rounded-bottom text-light">
-
         <!--Title-->
-        <h4 class="card-title">Card title</h4>
+        <h4 class="card-title"><%#DataBinder.Eval(Container.DataItem,"id_curso") %>  <%#DataBinder.Eval(Container.DataItem,"nombre") %></h4>
         <hr class="hr-light">
         <!--Text-->
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-          card's content.</p>
+        <p class="card-text"><%#DataBinder.Eval(Container.DataItem,"descripcion") %>.</p>
         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-        <button type="button" class="btn btn-outline-light btn-md">Read more</button>
-
+        <p class="card-text"><a href="VerCurso.aspx?id=<%#DataBinder.Eval(Container.DataItem,"id_curso") %>">  Ver más</a></p>
       </div>
-
     </div>
-    <!-- Card -->
-  </div>
-  <div class="col mb-4">
-     <!-- Card -->
-    <div class="card">
-
-      <!--Card image-->
-      <div class="view overlay">
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-          alt="Card image cap">
-        <a href="#!">
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
-
-      <!--Card content-->
-      <div class="card-body bg-dark rounded-bottom text-light">
-
-        <!--Title-->
-        <h4 class="card-title">Card title</h4>
-        <hr class="hr-light">
-        <!--Text-->
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-          card's content.</p>
-        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-        <button type="button" class="btn btn-outline-light btn-md">Read more</button>
-
-      </div>
-
-    </div>
-    <!-- Card -->
-  </div>
-  <div class="col mb-4">
-       <!-- Card -->
-    <div class="card">
-
-      <!--Card image-->
-      <div class="view overlay">
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-          alt="Card image cap">
-        <a href="#!">
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
-
-      <!--Card content-->
-      <div class="card-body bg-dark rounded-bottom text-light">
-
-        <!--Title-->
-        <h4 class="card-title">Card title</h4>
-        <hr class="hr-light">
-        <!--Text-->
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-          card's content.</p>
-        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-        <button type="button" class="btn btn-outline-light btn-md">Read more</button>
-
-      </div>
-
-    </div>
-    <!-- Card -->
-  </div>
-  <div class="col mb-4">
-     <!-- Card -->
-    <div class="card">
-
-      <!--Card image-->
-      <div class="view overlay">
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-          alt="Card image cap">
-        <a href="#!">
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
-
-      <!--Card content-->
-      <div class="card-body bg-dark rounded-bottom text-light">
-
-        <!--Title-->
-        <h4 class="card-title">Card title</h4>
-        <hr class="hr-light">
-        <!--Text-->
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-          card's content.</p>
-        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-        <button type="button" class="btn btn-outline-light btn-md">Read more</button>
-
-      </div>
-
-    </div>
-    <!-- Card -->
-  </div>
+</div>
+</ItemTemplate>
+</asp:Repeater>
 </div>
 
 
+<br /><br />
 <!-- Footer -->
-<footer class="page-footer font-small bg-dark pt-4">
+<footer class="page-footer font-small bg-info pt-4">
 
     <!-- Footer Elements -->
     <div class="container">
@@ -205,8 +132,8 @@
     <!-- Footer Elements -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-      <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+    <div class="footer-copyright text-center py-3"><font color="#FFFFF">© 2020 Copyright:</font>
+      <a href="https://www.ked.com.mx/"> KeD</a>
     </div>
     <!-- Copyright -->
 

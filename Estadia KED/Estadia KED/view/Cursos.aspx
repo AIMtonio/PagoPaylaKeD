@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="carrito.aspx.cs" Inherits="Estadia_KED.view.carrito" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Cursos.aspx.cs" Inherits="Estadia_KED.view.Cursos" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -12,8 +12,8 @@
     <script type="text/javascript">
     </script>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+<body class="main">
+     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -25,7 +25,7 @@
       <li class="nav-item">
         <a class="nav-link" href="MisCursos.aspx">Mis cursos</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="Cursos.aspx">Cursos</a>
       </li>
       <li class="nav-item">
@@ -36,50 +36,48 @@
       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Busqueda</button>
             <asp:LinkButton ID="lblEx" class="nav-link" runat="server" onclick="lblEx_Click">Cerrar sesi&oacute;n</asp:LinkButton>
             <asp:Label ID="usuario" runat="server" Text="" ForeColor="Azure"></asp:Label>
-    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+    </form>
   </div>
 </nav>
-<br />
-<div>
-<!--<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Curso</th>
-      <th scope="col">Descripción</th>
-      <th scope="col">Costo</th>
-      <th scope="col">Operación </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>-->
-    <br />
-    <!-- Fin -->
-    
-  <asp:gridview id="GridCarrito" autogeneratecolumns="False" allowpaging="True" runat="server" class="table">
-    <Columns>
-      <asp:BoundField  DataField="nombre" HeaderText="Nombre del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="n_curso" />
-      <asp:BoundField DataField="Descripcion" HeaderText="Descripción del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="d_curso" />
-      <asp:BoundField DataField="Costo" HeaderText="Costo del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="co_curso" />
-      
-    </Columns>
-</asp:gridview>
-     
-     <asp:Button ID="btnPagar" runat="server" Text="Pagar" onclick="pagar_Click"/><br /><br />
+</nav>
+<div><p class="h1 text-center"><font color="#21B6BF">Cursos</font></p><hr class="hr-light bg-primary"></div>
+ 
+<div class=" row">
+ <asp:Repeater ID="Repeater1" runat="server">
+<ItemTemplate>
+  <div class="col-md-4">
+ 
+    <!-- Card -->
+    <div class="card">
+
+      <!--Card image-->
+      <div class="view overlay">
+        <img  src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"imagen")) %>" width="486" height="410"
+          alt="Curso">
+        <a href="#!">
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <!--Card content-->
+      <div class="card-body bg-dark rounded-bottom text-light">
+
+        <!--Title-->
+        <h4 class="card-title"><%#DataBinder.Eval(Container.DataItem,"nombre") %></h4>
+        <hr class="hr-light">
+        <!--Text-->
+        <p class="card-text"><%#DataBinder.Eval(Container.DataItem,"descripcion") %>.</p>
+        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+        <p class="card-text"><a href="VerCurso.aspx?id=<%#DataBinder.Eval(Container.DataItem,"id_curso") %>">  Ver más</a></p>
+
+      </div>
+
     </div>
-    </form>
+
 </div>
-
-
+</ItemTemplate>
+</asp:Repeater>
+</div>
 <br /><br />
 <!-- Footer -->
 <footer class="page-footer font-small bg-info pt-4">
@@ -126,5 +124,6 @@
 
   </footer>
   <!-- Footer -->
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="carrito.aspx.cs" Inherits="Estadia_KED.view.carrito" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VerCurso.aspx.cs" Inherits="Estadia_KED.view.VerCurso" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -36,49 +36,75 @@
       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Busqueda</button>
             <asp:LinkButton ID="lblEx" class="nav-link" runat="server" onclick="lblEx_Click">Cerrar sesi&oacute;n</asp:LinkButton>
             <asp:Label ID="usuario" runat="server" Text="" ForeColor="Azure"></asp:Label>
-    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+    </form>
   </div>
 </nav>
 <br />
-<div>
-<!--<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Curso</th>
-      <th scope="col">Descripción</th>
-      <th scope="col">Costo</th>
-      <th scope="col">Operación </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>-->
-    <br />
-    <!-- Fin -->
-    
-  <asp:gridview id="GridCarrito" autogeneratecolumns="False" allowpaging="True" runat="server" class="table">
-    <Columns>
-      <asp:BoundField  DataField="nombre" HeaderText="Nombre del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="n_curso" />
-      <asp:BoundField DataField="Descripcion" HeaderText="Descripción del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="d_curso" />
-      <asp:BoundField DataField="Costo" HeaderText="Costo del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="co_curso" />
-      
-    </Columns>
-</asp:gridview>
-     
-     <asp:Button ID="btnPagar" runat="server" Text="Pagar" onclick="pagar_Click"/><br /><br />
-    </div>
-    </form>
+<div><p class="h1 text-center"><font color="#21B6BF">Especificaciones del curso<//font></p><hr class="hr-light bg-primary"></div>
+<div><p class="h2 text-center"><font color="#21B6BF">Información del curso</font></p></div>
+<asp:Repeater ID="Repeater1" runat="server">
+<ItemTemplate>
+<div class="row">
+<div class="col-md-1">
 </div>
+<div class="col-md-4">
+<img  src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"imagen")) %>" width="360" height="250"
+          alt="Curso">
+</div>
+<div class="col-md-4">
+<p class="h3 text-center"><%#DataBinder.Eval(Container.DataItem,"descripcion") %>.</p>
+</div>
+<div class="col-md-2">
+</div>
+</div>
+<div class="row">
+<div class="col-md-1">
+</div>
+<div class="col-md-4">
+<p class="h3 text-center"><%#DataBinder.Eval(Container.DataItem,"nombre") %>.</p>
+</div>
+<div class="col-md-4">
+</div>
+<div class="col-md-3">
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<p class="h2 text-center">Costo del curso</p>
+</div>
+<div class="col-md-4">
+<p class="h2 text-center">$<%#DataBinder.Eval(Container.DataItem,"costo") %>.</p>
+</div>
+<div class="col-md-2">
+</div>
+</div>
+</ItemTemplate>
+</asp:Repeater>
+<div class="row">
+<div class="col-md-4">
+<p class="h2 text-center">Código del curso</p>
+</div>
+<div class="col-md-2">
+</div>
+<div class="col-md-4" style="font-size:35px;">
+<asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+</div>
+<div class="col-md-2">
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+</div>
+<div class="col-md-1">
+</div>
+<div class="col-md-2 bg-success" >
+<p class="h2 text-center"><font color="#FFFFF">Agregar</font></p>
+</div>
+<div class="col-md-1">
 
+<img src="../img/carrito.png" width="120px" height="80px"/>
+</div>
+</div>
 
 <br /><br />
 <!-- Footer -->

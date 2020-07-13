@@ -1,0 +1,11 @@
+﻿.slide 
+{
+    width:920px;
+    height:330px;
+}
+.slide img 
+{
+    position:absolute;
+    width:920px;
+    height:330px;
+}

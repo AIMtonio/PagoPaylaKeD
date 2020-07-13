@@ -1,7 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="carrito.aspx.cs" Inherits="Estadia_KED.view.carrito" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MisCursos.aspx.cs" Inherits="Estadia_KED.view.MisCursos" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
@@ -13,17 +12,18 @@
     </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a href="login.aspx">
-    <img src="../img/kedX.png" height="30%" width="30%"/>
-    </a>
+    <a class="navbar-brand text-primary text-capitalize" href="login.aspx">KEDX</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="MisCursos.aspx">Mis cursos <span class="sr-only">(current)</span></a>
+      </li>
       <li class="nav-item">
-        <a class="nav-link" href="MisCursos.aspx">Mis cursos</a>
+        <a class="nav-link" href="#">Editar información</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Cursos.aspx">Cursos</a>
@@ -32,57 +32,63 @@
       </li>
     </ul>
     <form id="Form1" class="form-inline my-2 my-lg-0" runat="server">
-      <input class="form-control mr-sm-2" type="search" placeholder="Busqueda" aria-label="Busqueda">
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Busqueda</button>
+      
             <asp:LinkButton ID="lblEx" class="nav-link" runat="server" onclick="lblEx_Click">Cerrar sesi&oacute;n</asp:LinkButton>
             <asp:Label ID="usuario" runat="server" Text="" ForeColor="Azure"></asp:Label>
-    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+    </form>
   </div>
 </nav>
 <br />
-<div>
-<!--<table class="table">
-  <thead class="thead-dark">
+<div><p class="h1 text-uppercase py-4 text-center">Aquí se muestran tus cursos</p><hr class="hr-light bg-primary"></div>
+<div class="row">
+<div class="col-md-4">
+</div>
+<div class="col-md-4">
+
+<table border="5" style="border-color:#000000; font-size:50px;background:#FFFFFF">
     <tr>
-      <th scope="col">Curso</th>
-      <th scope="col">Descripción</th>
-      <th scope="col">Costo</th>
-      <th scope="col">Operación </th>
+    <td align="center" colspan="2"><asp:Label ID="Label1" runat="server" Text="Nombre del curso"></asp:Label></td>
+    <td align="center" colspan="2"><asp:Label ID="Label2" runat="server" Text="Status"></asp:Label></td>
     </tr>
-  </thead>
-  <tbody>
+    <asp:Repeater ID="Repeater1" runat="server">
+    <ItemTemplate>
     <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
+    <td align="center" colspan="2"><%#DataBinder.Eval(Container.DataItem,"nombre") %></td>
+    <td align="center" colspan="2"><%#DataBinder.Eval(Container.DataItem,"status") %></td>
     </tr>
-  </tbody>
-</table>-->
+   </ItemTemplate>
+   </asp:Repeater>
+      <tr>
+    <td align="center" colspan="2"><asp:Label ID="lblmen" Text="" runat="server"></asp:Label></td>
+    </tr>
+   </table>
+</div>
+<div class="col-md-4">
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+</div>
+<div class="col-md-4">
+
     <br />
-    <!-- Fin -->
+    <table style=" font-size:30px;">
+    <tr>
+    <td align="center" > <p>Agregar cursos...</p></td>
+    <td align="center" ><a class="nav-link" href="Cursos.aspx"><img src="../img/carrito.png" width="120px" height="80px"/></a></td>
+    </tr>
+    </table>
+   
     
-  <asp:gridview id="GridCarrito" autogeneratecolumns="False" allowpaging="True" runat="server" class="table">
-    <Columns>
-      <asp:BoundField  DataField="nombre" HeaderText="Nombre del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="n_curso" />
-      <asp:BoundField DataField="Descripcion" HeaderText="Descripción del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="d_curso" />
-      <asp:BoundField DataField="Costo" HeaderText="Costo del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="co_curso" />
-      
-    </Columns>
-</asp:gridview>
-     
-     <asp:Button ID="btnPagar" runat="server" Text="Pagar" onclick="pagar_Click"/><br /><br />
-    </div>
-    </form>
+</div>
+<div class="col-md-2">
+</div>
 </div>
 
 
-<br /><br />
+
 <!-- Footer -->
-<footer class="page-footer font-small bg-info pt-4">
+<footer class="page-footer font-small bg-dark pt-4">
 
     <!-- Footer Elements -->
     <div class="container">
@@ -119,12 +125,16 @@
     <!-- Footer Elements -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3"><font color="#FFFFF">© 2020 Copyright:</font>
-      <a href="https://www.ked.com.mx/"> KeD</a>
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
     </div>
     <!-- Copyright -->
 
   </footer>
   <!-- Footer -->
+
 </body>
 </html>
+
+
+

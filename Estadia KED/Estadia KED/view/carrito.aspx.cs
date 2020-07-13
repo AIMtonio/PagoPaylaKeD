@@ -13,6 +13,8 @@ namespace Estadia_KED.view{
 
         protected void Page_Load(object sender, EventArgs e){
 
+            Label1.Text = Request.Params["id"];
+
             Conexion cn = new Conexion();
             SqlConnection scn = cn.conectar();
 
@@ -38,9 +40,17 @@ namespace Estadia_KED.view{
 
         protected void pagar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("pago.aspx");
+            Response.Redirect("carrito.aspx");
 
         }
+
+        protected void lblEx_Click(object sender, EventArgs e)
+        {
+            Session.Remove("correo");
+            Response.Redirect("login.aspx");
+        }
+
+      
 
     }
 }
