@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Login</title>
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
     <script src="../js/jquery.js" type="text/javascript"></script>
     <script src="../js/bootstrap.js" type="text/javascript"></script>
@@ -30,7 +30,7 @@
     </a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="MisCursos.aspx">Mis cursos</a>
+      <a class="nav-link" href="MisCursos.aspx">Mis cursos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Cursos.aspx">Cursos</a>
@@ -43,10 +43,12 @@
       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Busqueda</button>
             <asp:LinkButton ID="lblEx" class="nav-link" runat="server" onclick="lblEx_Click">Cerrar sesi&oacute;n</asp:LinkButton>
             <asp:Label ID="usuario" runat="server" Text="" ForeColor="Azure"></asp:Label>
+            <a href="carrito.aspx"><img src="../img/Shopping Cart_48px.png" /></a>
     </form>
   </div>
 </nav>
 <div><br /><p class="h1  text-center"/><font color="#21B6BF">Cursos y Certificaciones Microsoft</font></p><hr class="hr-light bg-primary"></div>
+
 <div class="row">
 <div class="col-md-3"></div>
 <div class="slide" >

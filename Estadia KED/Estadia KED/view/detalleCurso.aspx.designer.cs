@@ -10,7 +10,7 @@
 namespace Estadia_KED.view {
     
     
-    public partial class VerCurso {
+    public partial class detalleCurso {
         
         /// <summary>
         /// Head1 control.
@@ -49,21 +49,21 @@ namespace Estadia_KED.view {
         protected global::System.Web.UI.WebControls.Label usuario;
         
         /// <summary>
-        /// Repeater1 control.
+        /// Repeater2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        protected global::System.Web.UI.WebControls.Repeater Repeater2;
         
         /// <summary>
-        /// Mensaje control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Mensaje;
+        protected global::System.Web.UI.WebControls.Label Label3;
     }
 }

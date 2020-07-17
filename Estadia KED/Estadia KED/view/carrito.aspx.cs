@@ -13,8 +13,19 @@ namespace Estadia_KED.view{
 
         protected void Page_Load(object sender, EventArgs e){
 
-            Label1.Text = Request.Params["id"];
+            Cliente obj = (Cliente)Session["correo"];
+            if (obj != null){
+                usuario.Text = obj.correo;
+            }
+            else{
+                Response.Redirect("login.aspx");
+            }
 
+           // consultar();
+
+            LabelCarrito.Text = Request.Params["id"];
+
+            //Label.Text = Request.Params["id2"];
             Conexion cn = new Conexion();
             SqlConnection scn = cn.conectar();
 
@@ -29,12 +40,12 @@ namespace Estadia_KED.view{
             //curso, descripcion, costo, operacion
             //idcarrito, idcurso, correo, cantidad
 
-            GridCarrito.DataSource = ds.Tables["Nombre"];
+            /*GridCarrito.DataSource = ds.Tables["Nombre"];
             GridCarrito.DataBind();
             GridCarrito.DataSource = ds.Tables["descripcion"];
             GridCarrito.DataBind();
             GridCarrito.DataSource = ds.Tables["costo"];
-            GridCarrito.DataBind();
+            GridCarrito.DataBind();*/
             
         }
 
@@ -49,6 +60,24 @@ namespace Estadia_KED.view{
             Session.Remove("correo");
             Response.Redirect("login.aspx");
         }
+
+        /*protected void consultar()
+        {
+            Conexion cn = new Conexion();
+            SqlConnection scn = cn.conectar();
+
+            //SqlConnection conexion = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT id_curso,nombre,costo,descripcion,imagen FROM curso";
+            DataTable imagen = new DataTable();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = scn;
+            scn.Open();
+            imagen.Load(cmd.ExecuteReader());
+            Repeater1.DataSource = imagen;
+            Repeater1.DataBind();
+            scn.Close();
+        }*/
 
       
 

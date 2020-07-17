@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title></title>
+    <title>Carrito</title>
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
     <script src="../js/jquery.js" type="text/javascript"></script>
     <script src="../js/bootstrap.js" type="text/javascript"></script>
@@ -12,8 +12,8 @@
     <script type="text/javascript">
     </script>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+<body class="main">
+     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -25,7 +25,7 @@
       <li class="nav-item">
         <a class="nav-link" href="MisCursos.aspx">Mis cursos</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="Cursos.aspx">Cursos</a>
       </li>
       <li class="nav-item">
@@ -36,53 +36,49 @@
       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Busqueda</button>
             <asp:LinkButton ID="lblEx" class="nav-link" runat="server" onclick="lblEx_Click">Cerrar sesi&oacute;n</asp:LinkButton>
             <asp:Label ID="usuario" runat="server" Text="" ForeColor="Azure"></asp:Label>
-    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+            <a href="carrito.aspx"><img src="../img/Shopping Cart_48px.png" /></a>
+    </form>
   </div>
 </nav>
-<br />
-<div>
-<!--<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Curso</th>
-      <th scope="col">Descripción</th>
-      <th scope="col">Costo</th>
-      <th scope="col">Operación </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>-->
-    <br />
-    <!-- Fin -->
-    
-  <asp:gridview id="GridCarrito" autogeneratecolumns="False" allowpaging="True" runat="server" class="table">
-    <Columns>
-      <asp:BoundField  DataField="nombre" HeaderText="Nombre del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="n_curso" />
-      <asp:BoundField DataField="Descripcion" HeaderText="Descripción del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="d_curso" />
-      <asp:BoundField DataField="Costo" HeaderText="Costo del curso" 
-      InsertVisible="False" ReadOnly="True" SortExpression="co_curso" />
-      
-    </Columns>
-</asp:gridview>
-     
-     <asp:Button ID="btnPagar" runat="server" Text="Pagar" onclick="pagar_Click"/><br /><br />
-    </div>
-    </form>
-</div>
-
-
+</nav>
+<div><p class="h1 text-center"><font color="#21B6BF">Carrito de productos</font></p><hr class="hr-light bg-primary"></div>
+ 
 <br /><br />
+<asp:Label ID="LabelCarrito" runat="server" Text=""></asp:Label><br /><br />
+
+<div id="paypal-button-container"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=MXN" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+      style: {
+          shape: 'pill',
+          color: 'white',
+          layout: 'horizontal',
+          label: 'paypal',
+          
+      },
+      createOrder: function(data, actions) {
+          return actions.order.create({
+              purchase_units: [{
+                  amount: {
+                      value: '1'
+                  }
+              }]
+          });
+      },
+      onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+              alert('Transaction completed by ' + details.payer.name.given_name + '!');
+          });
+      }
+  }).render('#paypal-button-container');
+</script>
+
+
 <!-- Footer -->
 <footer class="page-footer font-small bg-info pt-4">
+
+
 
     <!-- Footer Elements -->
     <div class="container">
@@ -126,5 +122,6 @@
 
   </footer>
   <!-- Footer -->
+
 </body>
 </html>

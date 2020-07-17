@@ -10,7 +10,7 @@ using System.Data;
 
 namespace Estadia_KED.view
 {
-    public partial class index : System.Web.UI.Page
+    public partial class detalleCurso : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,7 +19,8 @@ namespace Estadia_KED.view
             {
                 usuario.Text = obj.correo;
             }
-            else {
+            else
+            {
                 Response.Redirect("login.aspx");
             }
 
@@ -34,19 +35,26 @@ namespace Estadia_KED.view
 
         protected void consultar()
         {
+            string id = Request.Params["id"];
+
             Conexion cn = new Conexion();
             SqlConnection scn = cn.conectar();
+            Cliente obj = (Cliente)Session["correo"];
+            usuario.Text = obj.correo;
+
+            //Label3.Text = obj.correo;
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT TOP 3 id_curso,nombre,costo,descripcion,imagen FROM curso";
+            cmd.CommandText = "Select nombre, imagen, id_video, url, videos.costo, videos.status from videos inner join curso on curso.id_curso =videos.id_curso where curso.id_curso='" + id + "' and correo ='" + obj.correo + "'";
             DataTable imagen = new DataTable();
             cmd.CommandType = CommandType.Text;
             cmd.Connection = scn;
             scn.Open();
             imagen.Load(cmd.ExecuteReader());
-            Repeater1.DataSource = imagen;
-            Repeater1.DataBind();
+            Repeater2.DataSource = imagen;
+            Repeater2.DataBind();
             scn.Close();
         }
+
     }
 }

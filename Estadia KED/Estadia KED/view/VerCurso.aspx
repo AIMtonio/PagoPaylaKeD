@@ -36,12 +36,14 @@
       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Busqueda</button>
             <asp:LinkButton ID="lblEx" class="nav-link" runat="server" onclick="lblEx_Click">Cerrar sesi&oacute;n</asp:LinkButton>
             <asp:Label ID="usuario" runat="server" Text="" ForeColor="Azure"></asp:Label>
-    </form>
+            <a href="carrito.aspx"><img src="../img/Shopping Cart_48px.png" /></a>  
+    
   </div>
 </nav>
 <br />
 <div><p class="h1 text-center"><font color="#21B6BF">Especificaciones del curso<//font></p><hr class="hr-light bg-primary"></div>
-<div><p class="h2 text-center"><font color="#21B6BF">Información del curso</font></p></div>
+<div><p class="h2 text-center"><font color="#21B6BF">Información del curso</font></p></div><br />
+
 <asp:Repeater ID="Repeater1" runat="server">
 <ItemTemplate>
 <div class="row">
@@ -60,51 +62,51 @@
 <div class="row">
 <div class="col-md-1">
 </div>
-<div class="col-md-4">
-<p class="h3 text-center"><%#DataBinder.Eval(Container.DataItem,"nombre") %>.</p>
-</div>
+
 <div class="col-md-4">
 </div>
 <div class="col-md-3">
 </div>
 </div>
 <div class="row">
-<div class="col-md-4">
-<p class="h2 text-center">Costo del curso</p>
-</div>
-<div class="col-md-4">
-<p class="h2 text-center">$<%#DataBinder.Eval(Container.DataItem,"costo") %>.</p>
-</div>
 <div class="col-md-2">
 </div>
 </div>
-</ItemTemplate>
-</asp:Repeater>
+
 <div class="row">
 <div class="col-md-4">
 <p class="h2 text-center">Código del curso</p>
 </div>
+<div class="col-md-4">
+<p class="h3 text-center"><%#DataBinder.Eval(Container.DataItem,"nombre") %>.</p>
+</div>
 <div class="col-md-2">
 </div>
 <div class="col-md-4" style="font-size:35px;">
-<asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+
 </div>
 <div class="col-md-2">
 </div>
 </div>
+
 <div class="row">
 <div class="col-md-4">
 </div>
 <div class="col-md-1">
 </div>
-<div class="col-md-2 bg-success" >
-<p class="h2 text-center"><font color="#FFFFF">Agregar</font></p>
+<div class="col-md-4     bg-success" >
+<p class="h2 text-center">
+<asp:LinkButton ID="lblEx" class="nav-link" runat="server" onclick="agregarCatalogo">Agregar al catalogo</asp:LinkButton></p>
 </div>
-<div class="col-md-1">
+</div>  
 
-<img src="../img/carrito.png" width="120px" height="80px"/>
-</div>
-</div>
+</ItemTemplate>
+</asp:Repeater>
+</form>
+
+<br />
+<center><asp:Label ID="Mensaje" runat="server" Text=""></asp:Label></center> 
+
 
 <br /><br />
 <!-- Footer -->

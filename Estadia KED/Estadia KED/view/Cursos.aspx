@@ -36,6 +36,7 @@
       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Busqueda</button>
             <asp:LinkButton ID="lblEx" class="nav-link" runat="server" onclick="lblEx_Click">Cerrar sesi&oacute;n</asp:LinkButton>
             <asp:Label ID="usuario" runat="server" Text="" ForeColor="Azure"></asp:Label>
+            <a href="carrito.aspx"><img src="../img/Shopping Cart_48px.png" /></a>
     </form>
   </div>
 </nav>

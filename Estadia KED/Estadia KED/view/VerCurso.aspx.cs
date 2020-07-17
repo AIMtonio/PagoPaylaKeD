@@ -6,12 +6,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using Estadia_KED.control;
 
 namespace Estadia_KED.view
 {
-    public partial class VerCurso : System.Web.UI.Page
-    {
-        string cadenaconexion = @"Data Source=DESKTOP-U87UEML\SQLEXPRESS; Initial Catalog=BasePayPal; Integrated Security=true;";
+    public partial class VerCurso : System.Web.UI.Page{
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Cliente obj = (Cliente)Session["correo"];
@@ -24,32 +24,57 @@ namespace Estadia_KED.view
                 Response.Redirect("login.aspx");
             }
 
-            consultar();
-        }
+            consultarParametros();
+        }//end page load
 
 
-            protected void lblEx_Click(object sender, EventArgs e)
-        {
+            protected void lblEx_Click(object sender, EventArgs e){
             Session.Remove("correo");
             Response.Redirect("login.aspx");
-        }
+        }//end log out
 
-            protected void consultar()
-            {
-                Label1.Text = Request.Params["id"];
+            protected void consultarParametros(){
+                string id = Request.Params["id"];
+
+                Conexion cn = new Conexion();
+                SqlConnection scn = cn.conectar();
              
-                SqlConnection conexion = new SqlConnection(cadenaconexion);
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "SELECT id_curso,nombre,costo,descripcion,imagen FROM curso where id_curso='" + Label1.Text + "'";
+                cmd.CommandText = "SELECT id_curso,nombre,costo,descripcion,imagen FROM curso where id_curso='" + id + "'";
                 DataTable imagen = new DataTable();
                 cmd.CommandType = CommandType.Text;
-                cmd.Connection = conexion;
-                conexion.Open();
+                cmd.Connection = scn;
+                scn.Open();
                 imagen.Load(cmd.ExecuteReader());
                 Repeater1.DataSource = imagen;
                 Repeater1.DataBind();
-                conexion.Close();
+                scn.Close();
             }
 
+           protected void agregarCatalogo(object sender, EventArgs e)
+           {
+               string id = Request.Params["id"];
+               Cliente obj = (Cliente)Session["correo"];
+
+               try
+               {
+                   Conexion cn = new Conexion();
+                   SqlConnection scn = cn.conectar();
+
+                   String insertar = "insert into carrito(id_curso, correo) values (@id_curso, @correo)";
+
+                   SqlCommand cmd = new SqlCommand(insertar, scn);
+                   cmd.Parameters.Add("@id_curso", SqlDbType.Int).Value = id;
+                   cmd.Parameters.Add("@correo", SqlDbType.Text).Value = obj.correo;
+                   scn.Open();
+                   cmd.ExecuteNonQuery();
+                   Mensaje.Text = "Curso agregado a tu catalogo";
+               }
+               catch (Exception ex)
+               {
+                   Mensaje.Text = ex.Message;
+               }
+           }//end agregar al catalogo
+    
         }
     }
