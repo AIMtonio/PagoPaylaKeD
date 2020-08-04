@@ -83,6 +83,8 @@
     <Content Include="view\login.aspx" />
     <Content Include="view\MisCursos.aspx" />
     <Content Include="view\pago.aspx" />
+    <Content Include="view\PagoAceptado.aspx" />
+    <Content Include="view\PagoCancelado.aspx" />
     <Content Include="view\registro.aspx" />
     <Content Include="view\VerCurso.aspx" />
     <Content Include="Web.config" />
@@ -155,6 +157,20 @@
     </Compile>
     <Compile Include="view\pago.aspx.designer.cs">
       <DependentUpon>pago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\PagoAceptado.aspx.cs">
+      <DependentUpon>PagoAceptado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\PagoAceptado.aspx.designer.cs">
+      <DependentUpon>PagoAceptado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\PagoCancelado.aspx.cs">
+      <DependentUpon>PagoCancelado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\PagoCancelado.aspx.designer.cs">
+      <DependentUpon>PagoCancelado.aspx</DependentUpon>
     </Compile>
     <Compile Include="view\registro.aspx.cs">
       <DependentUpon>registro.aspx</DependentUpon>

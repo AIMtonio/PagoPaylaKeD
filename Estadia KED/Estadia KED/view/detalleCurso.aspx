@@ -50,33 +50,92 @@
     <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col"><center>Código</center></th>
-      <th scope="col"><center>Imagen</center></th>
+      <th scope="col"><center>Curso</center></th>
       <th scope="col"><center>Video</center></th>
       <th scope="col"><center>Costo</center></th>
-      <th scope="col"><center>Status</center></th>
+      
+      <th scope="col"><center>Operación</center></th>
     </tr>
   </thead>
-  <asp:Repeater ID="Repeater2" runat="server">
+  
+
+
+<asp:Label ID="estadoConsulta"  Text="" runat="server"></asp:Label><br />
+<asp:Label ID="idCompraW"  hidden="" Text="" runat="server"></asp:Label>
+
+<asp:Repeater ID="Repeater2" runat="server">
 <ItemTemplate>
+
+<form action="http://www.sandbox.paypal.com/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick" />
+<input type="hidden" name="business" value="sb-88abz2803767@business.example.com" />
+<input type="hidden" name="item_name" value="Pagar curso" />
+<input type="hidden" name="currency_code" value="MXN" />
+
   <tbody>
+<input type="hidden" name="amount" value="<%#DataBinder.Eval(Container.DataItem,"costo") %>" />
+<input type="hidden" name="no_shipping" value="1" />
+<!-- sb-bvb8u2804062@personal.example.com -->
+<!-- @O-j4Dh6 -->
+
+<input type="hidden" name="return" value="http://localhost:49853/view/PagoAceptado.aspx?id=<%#DataBinder.Eval(Container.DataItem,"id_compra") %>" />
+<input type="hidden" name="cancel_return" value="http://localhost:49853/view/PagoCancelado.aspx?id=<%#DataBinder.Eval(Container.DataItem,"id_video") %>" />
     <tr><center>
-      <th scope="row"><center><%#DataBinder.Eval(Container.DataItem,"nombre") %></center></th>
       <td><center><img  src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"imagen")) %>"
        width="210" height="130" alt=" Curso"></center></td>
-      <td><center><%#DataBinder.Eval(Container.DataItem,"url") %></center></td>
-      <td><center><%#DataBinder.Eval(Container.DataItem,"costo") %></center></td>
-      <td><center><button type="button" class="btn btn-success">Comprar</button></center></td></center>
+       <input type="text" id="estado" value="<%#DataBinder.Eval(Container.DataItem,"status") %>"/>
+       <%
+       //int status = Convert.ToInt32(Request.Params["estado"]);
+           Estadia_KED.control.Conexion cn = new Estadia_KED.control.Conexion();
+           System.Data.SqlClient.SqlConnection scn = cn.conectar();
+
+           string id = Request.Params["id"];
+           Estadia_KED.Cliente obj = (Estadia_KED.Cliente)Session["correo"];
+           usuario.Text = obj.correo;
+           int statusC = 0;
+
+           scn.Open();
+
+           string queryConteo = "select count (id_compra) from compra where correo = '" + obj.correo + "'";
+           System.Data.SqlClient.SqlCommand commandConteo = new System.Data.SqlClient.SqlCommand(queryConteo, scn);
+           int conteo = Convert.ToInt32(commandConteo.ExecuteScalar());
+
+           for (int i = 0; i >= conteo; i++)
+           {
+               string queryStatus = "Select compra.status from videos inner join curso on curso.id_curso =videos.id_curso inner join compra on videos.id_video = compra.id_video where curso.id_curso ='" +
+                  id + "' and correo ='" + obj.correo + "'";
+               System.Data.SqlClient.SqlCommand commandStatus = new System.Data.SqlClient.SqlCommand(queryStatus, scn);
+               statusC = Convert.ToInt32(commandStatus.ExecuteScalar());
+           }
+
+           scn.Close(); %>
+       <%
+          if (statusC == 0)
+          {%>
+          <td><center>Requieres comprarlo
+          
+          <td><center>$<%#DataBinder.Eval(Container.DataItem,"costo") %>.00</center></td>
+          <td><center><input type="submit" class="btn btn-success" value="Comprar"></center></td></center></center></td>
+            <%  }else if(statusC == 1){%>
+
+          <td><center><%#DataBinder.Eval(Container.DataItem,"url")%>
+          <td>Comprado</td> 
+          </center></td>
+           
+          <%}%>
+
     </tr>
+      </tbody>
+      </form>
     </ItemTemplate>
 </asp:Repeater>
-  </tbody>
+
+
+
 </table>
     </div>     
     </div><!--Fin rows-->
 </section><!--Fin del contenedor-->
-
-<asp:Label ID="Label3" Text="" runat="server"></asp:Label>
 
 <br /><br />
 <!-- Footer -->

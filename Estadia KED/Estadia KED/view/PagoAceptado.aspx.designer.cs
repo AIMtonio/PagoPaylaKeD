@@ -10,7 +10,7 @@
 namespace Estadia_KED.view {
     
     
-    public partial class detalleCurso {
+    public partial class PagoAceptado {
         
         /// <summary>
         /// Head1 control.
@@ -49,30 +49,12 @@ namespace Estadia_KED.view {
         protected global::System.Web.UI.WebControls.Label usuario;
         
         /// <summary>
-        /// estadoConsulta control.
+        /// estado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label estadoConsulta;
-        
-        /// <summary>
-        /// idCompraW control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label idCompraW;
-        
-        /// <summary>
-        /// Repeater2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater2;
+        protected global::System.Web.UI.WebControls.Label estado;
     }
 }

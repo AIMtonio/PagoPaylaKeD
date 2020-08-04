@@ -49,6 +49,7 @@ namespace Estadia_KED.control
             }
             return obj;
         }
+
         /*Registro de nuevo usuario a KeDX*/
         public static Cliente Registro(String correo,String telefono,String contrasena)
         {

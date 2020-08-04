@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MisCursos.aspx.cs" Inherits="Estadia_KED.view.MisCursos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PagoAceptado.aspx.cs" Inherits="Estadia_KED.view.PagoAceptado" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
@@ -11,8 +12,8 @@
     <script type="text/javascript">
     </script>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+<body class="main">
+     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,9 +23,9 @@
     </a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-      <a class="nav-link active" href="MisCursos.aspx">Mis cursos</a>
+        <a class="nav-link" href="MisCursos.aspx">Mis cursos</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="Cursos.aspx">Cursos</a>
       </li>
       <li class="nav-item">
@@ -39,61 +40,15 @@
     </form>
   </div>
 </nav>
-<div><br /><p class="h1  text-center"/><font color="#21B6BF">Tienes en tu catalogo los siguientes cursos: </font></p><hr class="hr-light bg-primary"></div>
-
-<br />
-
-
-
-
-
-<section class="container">
-    <div class="row">
-    <div class="col-xs 12 col-md-12 bg">
-    <table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col"><center>Nombre</center></th>
-      <th scope="col"><center>Acción</center></th>
-    </tr>
-  </thead>
-  <asp:Repeater ID="Repeater2" runat="server">
-<ItemTemplate>
-  <tbody>
-    <tr>
-      <th scope="row"><center><%#DataBinder.Eval(Container.DataItem,"nombre") %></center></th>
-      <td><center><a href="detalleCurso.aspx?id=<%#DataBinder.Eval(Container.DataItem,"id_curso") %>">
-      <button type="button" class="btn btn-primary">Ver detalles</button></a></center></td>
-    </tr>
-    </ItemTemplate>
-</asp:Repeater>
-  </tbody>
-</table>
-    </div>     
-    </div><!--Fin rows-->
-</section><!--Fin del contenedor-->
-<asp:Label ID="Label3" Text="" runat="server"></asp:Label>
-
+</nav>
+<div><p class="h1 text-center"><font color="#21B6BF">Tu curso fue pagado</font></p><hr class="hr-light bg-primary"></div><br /><br />
 
 <center>
-<div class="col-md-4" >
-    <br />
-    <table style=" font-size:30px;">
-    <tr>
-    <td align="center" > <p>Agregar cursos...</p></td>
-    <td align="center" ><a class="nav-link" href="Cursos.aspx"><img src="../img/carrito.png" width="120px" height="80px"/></a></td>
-    </tr>
-    </table> 
-</div>
+<asp:Label ID="estado" hidden="" Text="" runat="server"></asp:Label>
 </center>
+ 
 
-<br />
-
-<asp:Label ID="conteoCursos" Text="" runat="server"></asp:Label>
-
-
-
-
+ <br /><br /><br /><br /><br /><br /><br /><br />
 <br /><br />
 <!-- Footer -->
 <footer class="page-footer font-small bg-info pt-4">
@@ -143,6 +98,3 @@
 
 </body>
 </html>
-
-
-
